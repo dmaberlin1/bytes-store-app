@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './scss/App.scss';
+import {Route, Routes} from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home";
+import FullProduct from "./pages/FullProduct";
+import UserPanel from "./pages/UserPanel";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Routes>
+     <Route path='/' element={<MainLayout/>}>
+       <Route path={''} element={<Home/>} ></Route>
+       <Route path={'product/:id'} element={<FullProduct/>}></Route>
+       <Route path={'user-panel/wishlist'} element={<UserPanel activePage={'wishlist'}/>}></Route>
+         {/*добавить в список желаний переход сразу на нужную вкладку*/}
+     </Route>
+   </Routes>
+
+
   );
 }
 
